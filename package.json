@@ -1,5 +1,5 @@
 {
-  "name": "under30",
+  "name": "under-30",
   "displayName": "Under 30",
   "description": "",
   "version": "0.0.1",
@@ -14,7 +14,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "under30.helloWorld",
+        "command": "under-30.helloWorld",
         "title": "Hello World"
       }
     ]

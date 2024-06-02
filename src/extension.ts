@@ -1,26 +1,231 @@
+/**************************************************************
+ *
+ *                     extension.ts
+ *
+ *            Project: Under 30 VSCode Extension
+ *             Author: Dan Glorioso
+ *            Created: 05/13/2024
+ *           Modified: 05/15/2024
+ *
+ *     Summary: A Microsoft Visual Studio Code extension that provides a status
+ * 			    bar item that displays the number of lines selected in the 
+ *              active text editor. This extension also can detect functions
+ * 	            that exceed 30 lines of code in length. 
+ * 
+ *  Acknowledgements: This extension is based on the "statusbar-sample" example
+ * 			    provided by Microsoft's Visual Studio Code documentation:
+ *              https://github.com/microsoft/vscode-extension-samples/tree/
+ *              209ce0e81bdf23adb84e4a913f1082fa116e26f9/statusbar-sample. 
+ *
+ **************************************************************/
+
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+let myStatusBarItem: vscode.StatusBarItem;
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "under30" is now active!');
+export function activate({ subscriptions }: vscode.ExtensionContext) {
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('under30.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Under 30!');
-	});
+	// register a command that is invoked when the status bar
+	// item is selected
+	const myCommandId = 'sample.showSelectionCount';
+	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
+		const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+		vscode.window.showInformationMessage(`Yeah, ${n} line(s) selected... Keep going!`);
+	}));
 
-	context.subscriptions.push(disposable);
+	// create a new status bar item that we can now manage
+	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	myStatusBarItem.command = myCommandId;
+	subscriptions.push(myStatusBarItem);
+
+	// register some listener that make sure the status bar 
+	// item always up-to-date
+	subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
+	subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem));
+
+	// update status bar item once at start
+	updateStatusBarItem();
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+function updateStatusBarItem(): void {
+	const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+	if (n > 0) {
+		myStatusBarItem.text = `$(megaphone) ${n} line(s) selected`;
+		myStatusBarItem.show();
+	} else {
+		myStatusBarItem.hide();
+	}
+}
+
+function getNumberOfSelectedLines(editor: vscode.TextEditor | undefined): number {
+	let lines = 0;
+	if (editor) {
+		lines = editor.selections.reduce((prev, curr) => prev + (curr.end.line - curr.start.line), 0);
+	}
+	return lines;
+}
+
+
+
+
+// // The module 'vscode' contains the VS Code extensibility API
+// // Import the module and reference it with the alias vscode in your code below
+// import * as vscode from 'vscode';
+
+// let myStatusBarItem: vscode.StatusBarItem;
+
+// export function activate({ subscriptions }: vscode.ExtensionContext) {
+
+// 	// register a command that is invoked when the status bar
+// 	// item is selected
+// 	console.log("WORKING...\n");
+// 	const myCommandId = 'sample.showSelectionCount';
+// 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
+// 		const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+// 		vscode.window.showInformationMessage(`Yeah, ${n} line(s) selected... Keep going!`);
+// 	}));
+
+// 	// create a new status bar item that we can now manage
+// 	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+// 	myStatusBarItem.command = myCommandId;
+// 	subscriptions.push(myStatusBarItem);
+
+// 	// register some listener that make sure the status bar 
+// 	// item always up-to-date
+// 	subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
+// 	subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem));
+
+// 	// update status bar item once at start
+// 	updateStatusBarItem();
+// }
+
+// function updateStatusBarItem(): void {
+// 	const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+// 	if (n > 0) {
+// 		myStatusBarItem.text = `$(megaphone) ${n} line(s) selected`;
+// 		myStatusBarItem.show();
+// 	} else {
+// 		myStatusBarItem.hide();
+// 	}
+// }
+
+// function getNumberOfSelectedLines(editor: vscode.TextEditor | undefined): number {
+// 	let lines = 0;
+// 	if (editor) {
+// 		lines = editor.selections.reduce((prev, curr) => prev + (curr.end.line - curr.start.line), 0);
+// 	}
+// 	return lines;
+// }
+
+// import * as vscode from 'vscode';
+
+// let myStatusBarItem: vscode.StatusBarItem;
+
+// export function activate({ subscriptions }: vscode.ExtensionContext) {
+
+// 	// register a command that is invoked when the status bar
+// 	// item is selected
+// 	const myCommandId = 'sample.showSelectionCount';
+// 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
+// 		const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+// 		vscode.window.showInformationMessage(`Yeah, ${n} line(s) selected... Keep going!`);
+// 	}));
+
+// 	// create a new status bar item that we can now manage
+// 	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+// 	myStatusBarItem.command = myCommandId;
+// 	subscriptions.push(myStatusBarItem);
+
+// 	// register some listener that make sure the status bar 
+// 	// item always up-to-date
+// 	subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
+// 	subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem));
+
+// 	// update status bar item once at start
+// 	updateStatusBarItem();
+// }
+
+// function updateStatusBarItem(): void {
+// 	const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+// 	if (n > 0) {
+// 		myStatusBarItem.text = `$(megaphone) ${n} line(s) selected`;
+// 		myStatusBarItem.show();
+// 	} else {
+// 		myStatusBarItem.hide();
+// 	}
+// }
+
+// function getNumberOfSelectedLines(editor: vscode.TextEditor | undefined): number {
+// 	let lines = 0;
+// 	if (editor) {
+// 		lines = editor.selections.reduce((prev, curr) => prev + (curr.end.line - curr.start.line), 0);
+// 	}
+// 	return lines;
+// }
+
+
+
+
+// import * as vscode from "vscode";
+
+// let myStatusBarItem: vscode.StatusBarItem; 
+
+// export function activate({ subscriptions }: vscode.ExtensionContext) {
+//   // register a command that is invoked when the status bar
+//   // item is selected
+//   const myCommandId = "ext.showSelectionCount";
+//   subscriptions.push(
+//     vscode.commands.registerCommand(myCommandId, () => {
+//       let n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+//       vscode.window.showInformationMessage(
+//         `${n} line${n ? "s" : ""} selected.`
+//       );
+//     })
+//   );
+
+//   // create a new status bar item that we can now manage
+//   myStatusBarItem = vscode.window.createStatusBarItem(
+//     vscode.StatusBarAlignment.Right,
+//     10000
+//   );
+//   myStatusBarItem.command = myCommandId;
+//   subscriptions.push(myStatusBarItem);
+
+//   // register some listener that make sure the status bar
+//   // item always up-to-date
+//   subscriptions.push(
+//     vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem)
+//   );
+//   subscriptions.push(
+//     vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem)
+//   );
+
+//   // update status bar item once at start
+//   updateStatusBarItem();
+// }
+
+// function updateStatusBarItem(): void {
+//   let n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
+//   if (n > 1) {
+//     myStatusBarItem.text = `$(list-selection) ${n} lines`;
+//     myStatusBarItem.tooltip = `${n} lines selected`;
+//     myStatusBarItem.show();
+//   } else {
+//     myStatusBarItem.hide();
+//   }
+// }
+
+// function getNumberOfSelectedLines(
+//   editor: vscode.TextEditor | undefined
+// ): number {
+//   let lines = 0;
+//   if (editor) {
+//     lines = editor.selections.reduce(
+//       (prev, curr) => prev + (curr.end.line - curr.start.line),
+//       1
+//     );
+//   }
+//   return lines;
+// }

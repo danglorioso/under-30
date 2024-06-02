@@ -1,6 +1,6 @@
-# under30 README
+# under-30 README
 
-This is the README for your extension "under30". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "under-30". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 
