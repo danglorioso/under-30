@@ -90,15 +90,15 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			}
 		}
 		
-		// Error message for invalid functions
+		// Display error message if there are unclosed functions at end of file
 		if (stack.length > 0) {
-			vscode.window.showWarningMessage('Function exceeds 30 lines and is not closed.');
-		}
-
-		// If no warnings were displayed, display success message
-		if (!hasWarning) {
+			vscode.window.showWarningMessage('Unclosed functions exist in this file!');
+		} else if (!hasWarning) {
+			// If no warnings were displayed, display success message
 			vscode.window.showInformationMessage('No functions exceed 30 lines in this file!');
 		}
+
+		
 	}));
 
 	// Create a new status bar item that we can now manage
