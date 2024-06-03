@@ -34,85 +34,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// When status bar item is clicked, scan the active editor window
 	// for functions that exceed 30 lines of code
 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
-		// Fetch the active editor window
-		const editor = vscode.window.activeTextEditor;
-
-		// If no editor is active, do nothing
-		if (!editor) {
-			return; 
-		}
-	
-		// Initialize variables to store the text, lines, stack, and line count
-		const text = editor.document.getText();
-		const lines = text.split('\n');
-		let stack = [];
-		let lineCount = 0;
-		let functionStartLine = 0;
-		let hasWarning = false;
-		
-		// Traverse the lines in the active editor window
-		for (let LINE_I = 0; LINE_I < lines.length; LINE_I++) {
-			// Fetch the current line
-			let line = lines[LINE_I];
-
-			// Traverse each character in the line
-			for (let CHAR_I = 0; CHAR_I < line.length; CHAR_I++) {
-				// Fetch the current character
-				let char = line[CHAR_I];
-
-				if (char === '{') {
-					// Push the stack if the character is an opening brace
-					stack.push('{');
-
-					// Check if this is the start of a function
-					if (stack.length === 1) {
-						functionStartLine = LINE_I + 1;
-						// Subtract 1 to account for line with opening brace
-						lineCount = -1;
-					}
-				} else if (char === '}') {
-					// Pop the stack if the character is a closing brace
-					if (stack.length > 0) {
-						stack.pop();
-					} else {
-						hasWarning = true;
-						// If no opening braces to match, display error message
-						vscode.window.showWarningMessage(`Unclosed function(s) 
-											     exist or extra closing brace 
-													  at line ${LINE_I + 1}.`);
-					}
-
-					// If the function has ended, check if it exceeds 30 lines
-					if (stack.length === 0) {
-						if (lineCount > 30) {
-							// Trip warning flag boolean
-							hasWarning = true;
-							// Display warning message
-							vscode.window.showWarningMessage(`Function from 
-										      line ${functionStartLine} to line 
-									         ${LINE_I + 1} exceeds 30 lines.`);
-						}
-						// Reset line count
-						lineCount = 0;
-					}
-				}
-			}
-			// Increment line count if line is in function and not at end yet
-			if (stack.length > 0) {
-				lineCount++;
-			}
-		}
-		
-		// Display error message if there are unclosed functions at end of file
-		if (stack.length > 0) {
-			vscode.window.showWarningMessage
-							   	  ('Unclosed function(s) exist in this file!');
-		} else if (!hasWarning) {
-			// If no warnings were displayed, display success message
-			vscode.window.showInformationMessage
-								('No functions exceed 30 lines in this file!');
-		}
-		
+		checkFunctionLength();
 	}));
 
 	// Create a new status bar item that we can now manage
@@ -131,6 +53,87 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// Update status bar item once at start
 	updateStatusBarItem();
 }
+
+function checkFunctionLength() {
+	// Fetch the active editor window
+	const editor = vscode.window.activeTextEditor;
+
+	// If no editor is active, do nothing
+	if (!editor) {
+		return; 
+	}
+
+	// Initialize variables to store the text, lines, stack, and line count
+	const text = editor.document.getText();
+	const lines = text.split('\n');
+	let stack = [];
+	let lineCount = 0;
+	let functionStartLine = 0;
+	let hasWarning = false;
+	
+	// Traverse the lines in the active editor window
+	for (let LINE_I = 0; LINE_I < lines.length; LINE_I++) {
+		// Fetch the current line
+		let line = lines[LINE_I];
+
+		// Traverse each character in the line
+		for (let CHAR_I = 0; CHAR_I < line.length; CHAR_I++) {
+			// Fetch the current character
+			let char = line[CHAR_I];
+
+			if (char === '{') {
+				// Push the stack if the character is an opening brace
+				stack.push('{');
+
+				// Check if this is the start of a function
+				if (stack.length === 1) {
+					functionStartLine = LINE_I + 1;
+					// Subtract 1 to account for line with opening brace
+					lineCount = -1;
+				}
+			} else if (char === '}') {
+				// Pop the stack if the character is a closing brace
+				if (stack.length > 0) {
+					stack.pop();
+				} else {
+					hasWarning = true;
+					// If no opening braces to match, display error message
+					vscode.window.showWarningMessage(`Unclosed function(s) 
+												exist or extra closing brace 
+													at line ${LINE_I + 1}.`);
+				}
+
+				// If the function has ended, check if it exceeds 30 lines
+				if (stack.length === 0) {
+					if (lineCount > 30) {
+						// Trip warning flag boolean
+						hasWarning = true;
+						// Display warning message
+						vscode.window.showWarningMessage(`Function from 
+											line ${functionStartLine} to line 
+											${LINE_I + 1} exceeds 30 lines.`);
+					}
+					// Reset line count
+					lineCount = 0;
+				}
+			}
+		}
+		// Increment line count if line is in function and not at end yet
+		if (stack.length > 0) {
+			lineCount++;
+		}
+	}
+	
+	// Display error message if there are unclosed functions at end of file
+	if (stack.length > 0) {
+		vscode.window.showWarningMessage
+									('Unclosed function(s) exist in this file!');
+	} else if (!hasWarning) {
+		// If no warnings were displayed, display success message
+		vscode.window.showInformationMessage
+							('No functions exceed 30 lines in this file!');
+	}
+}	
 
 function updateStatusBarItem(): void {
 
