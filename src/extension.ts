@@ -44,20 +44,39 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	
 		const text = editor.document.getText();
 		const lines = text.split('\n');
+		let stack = [];
 		let lineCount = 0;
-		let inFunction = false;
-	
+		let functionStartLine = 0;
+		
 		for (let i = 0; i < lines.length; i++) {
 			if (lines[i].includes('{')) {
-				inFunction = true;
-				lineCount = 1;
-			} else if (lines[i].includes('}')) {
-				console.log('End of function and line count is: ' + lineCount);
-				inFunction = false;
-				if (lineCount > 30) {
-					vscode.window.showWarningMessage(`Function from line ${i - lineCount + 1} to line ${i + 1} exceeds 30 lines.`);
+				console.log('Opening bracket found at line: ' + (i + 1));
+				stack.push('{');
+				// If the stack is empty, this is the start of a function.
+				// Store the function start line number and initialize the line count.
+				if (stack.length === 1) {
+					functionStartLine = i;
+					lineCount = 1;
 				}
-			} else if (inFunction) {
+			} else if (lines[i].includes('}')) {
+				console.log('Closing bracket found at line: ' + (i + 1));
+				// Remove the corresponding opening bracket from stack
+				if (stack.length > 0) {
+					stack.pop();
+				}
+		
+				// If the stack is now empty, then at the end of the function.
+				if (stack.length === 0) {
+					console.log('End of function and line count is: ' + lineCount);
+					console.log('Function start line: ' + (functionStartLine + 1));
+					console.log('Function end line: ' + i);
+					// Display warning message if function exceeds 30 lines
+					if (lineCount > 30) {
+						vscode.window.showWarningMessage(`Function from line ${functionStartLine + 1} to line ${i + 1} exceeds 30 lines.`);
+					}
+					lineCount = 0;
+				}
+			} else if (stack.length > 0) {
 				lineCount++;
 			}
 		}
