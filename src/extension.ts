@@ -72,6 +72,9 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 					// Pop the stack if the character is a closing brace
 					if (stack.length > 0) {
 						stack.pop();
+					} else {
+						// If there are no opening braces to match the closing brace, display error message
+						vscode.window.showWarningMessage(`Unclosed function or extra closing brace at line ${LINE_I + 1}`);
 					}
 
 					// If the function has ended, check if it exceeds 30 lines
@@ -97,7 +100,6 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 			// If no warnings were displayed, display success message
 			vscode.window.showInformationMessage('No functions exceed 30 lines in this file!');
 		}
-
 		
 	}));
 
