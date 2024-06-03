@@ -23,7 +23,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-let myStatusBarItem: vscode.StatusBarItem;
+let lineStatusBarItem: vscode.StatusBarItem;
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
 
@@ -38,10 +38,10 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	}));
 
 	// Create a new status bar item that we can now manage
-	myStatusBarItem = vscode.window.createStatusBarItem
+	lineStatusBarItem = vscode.window.createStatusBarItem
 										(vscode.StatusBarAlignment.Right, 100);
-	myStatusBarItem.command = myCommandId;
-	subscriptions.push(myStatusBarItem);
+	lineStatusBarItem.command = myCommandId;
+	subscriptions.push(lineStatusBarItem);
 
 	// Register some listener that make sure the status bar 
 	// items are always up-to-date
@@ -142,10 +142,10 @@ function updateStatusBarItem(): void {
 
 	// Only display number of selected lines if greater than 1
 	if (n > 1) {
-		myStatusBarItem.text = `$(list-selection) ${n} lines selected`;
-		myStatusBarItem.show();
+		lineStatusBarItem.text = `$(list-selection) ${n} lines selected`;
+		lineStatusBarItem.show();
 	} else {
-		myStatusBarItem.hide();
+		lineStatusBarItem.hide();
 	}
 }
 
