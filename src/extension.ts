@@ -75,10 +75,11 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 					if (stack.length > 0) {
 						stack.pop();
 					} else {
+						hasWarning = true;
 						// If no opening braces to match, display error message
-						vscode.window.showWarningMessage(`Unclosed function' +
-											 'exists or extra closing brace' + 
-													 'at line ${LINE_I + 1}.`);
+						vscode.window.showWarningMessage(`Unclosed function(s) 
+											     exist or extra closing brace 
+													  at line ${LINE_I + 1}.`);
 					}
 
 					// If the function has ended, check if it exceeds 30 lines
@@ -87,9 +88,9 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 							// Trip warning flag boolean
 							hasWarning = true;
 							// Display warning message
-							vscode.window.showWarningMessage(`Function from' + 
-										 'line ${functionStartLine} to line' + 
-									        '${LINE_I + 1} exceeds 30 lines.`);
+							vscode.window.showWarningMessage(`Function from 
+										      line ${functionStartLine} to line 
+									         ${LINE_I + 1} exceeds 30 lines.`);
 						}
 						// Reset line count
 						lineCount = 0;
@@ -105,7 +106,7 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 		// Display error message if there are unclosed functions at end of file
 		if (stack.length > 0) {
 			vscode.window.showWarningMessage
-									('Unclosed functions exist in this file!');
+							   	  ('Unclosed function(s) exist in this file!');
 		} else if (!hasWarning) {
 			// If no warnings were displayed, display success message
 			vscode.window.showInformationMessage
