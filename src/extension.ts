@@ -115,14 +115,17 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	}));
 
 	// Create a new status bar item that we can now manage
-	myStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+	myStatusBarItem = vscode.window.createStatusBarItem
+										(vscode.StatusBarAlignment.Right, 100);
 	myStatusBarItem.command = myCommandId;
 	subscriptions.push(myStatusBarItem);
 
 	// Register some listener that make sure the status bar 
 	// items are always up-to-date
-	subscriptions.push(vscode.window.onDidChangeActiveTextEditor(updateStatusBarItem));
-	subscriptions.push(vscode.window.onDidChangeTextEditorSelection(updateStatusBarItem));
+	subscriptions.push(vscode.window.onDidChangeActiveTextEditor
+														(updateStatusBarItem));
+	subscriptions.push(vscode.window.onDidChangeTextEditorSelection
+					 									(updateStatusBarItem));
 
 	// Update status bar item once at start
 	updateStatusBarItem();
