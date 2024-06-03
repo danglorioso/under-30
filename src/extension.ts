@@ -47,40 +47,57 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 		let stack = [];
 		let lineCount = 0;
 		let functionStartLine = 0;
+		let hasWarning = false;
 		
-		for (let i = 0; i < lines.length; i++) {
-			if (lines[i].includes('{')) {
-				console.log('Opening bracket found at line: ' + (i + 1));
-				stack.push('{');
-				// If the stack is empty, this is the start of a function.
-				// Store the function start line number and initialize the line count.
-				if (stack.length === 1) {
-					functionStartLine = i;
-					lineCount = 1;
-				}
-			} else if (lines[i].includes('}')) {
-				console.log('Closing bracket found at line: ' + (i + 1));
-				// Remove the corresponding opening bracket from stack
-				if (stack.length > 0) {
-					stack.pop();
-				}
-		
-				// If the stack is now empty, then at the end of the function.
-				if (stack.length === 0) {
-					console.log('End of function and line count is: ' + lineCount);
-					console.log('Function start line: ' + (functionStartLine + 1));
-					console.log('Function end line: ' + i);
-					// Display warning message if function exceeds 30 lines
-					if (lineCount > 30) {
-						vscode.window.showWarningMessage(`Function from line ${functionStartLine + 1} to line ${i + 1} exceeds 30 lines.`);
+		// Traverse the lines in the active editor window
+		for (let LINE_I = 0; LINE_I < lines.length; LINE_I++) {
+			// Fetch the current line
+			let line = lines[LINE_I];
+
+			// Traverse each character in the line
+			for (let CHAR_I = 0; CHAR_I < line.length; CHAR_I++) {
+				// Fetch the current character
+				let char = line[CHAR_I];
+
+				if (char === '{') {
+					// Push the stack if the character is an opening brace
+					stack.push('{');
+
+					// Check if this is the start of a function
+					if (stack.length === 1) {
+						functionStartLine = LINE_I + 1;
+						lineCount = -1; // Subtract 1 to account for the line with the opening brace
 					}
-					lineCount = 0;
+				} else if (char === '}') {
+					// Pop the stack if the character is a closing brace
+					if (stack.length > 0) {
+						stack.pop();
+					}
+
+					// If the function has ended, check if it exceeds 30 lines
+					if (stack.length === 0) {
+						if (lineCount > 30) {
+							hasWarning = true;
+							vscode.window.showWarningMessage(`Function from line ${functionStartLine} to line ${LINE_I + 1} exceeds 30 lines.`);
+						}
+						lineCount = 0;
+					}
 				}
-			} else if (stack.length > 0) {
+			}
+			// Increment line count if line is in function and not at end yet
+			if (stack.length > 0) {
 				lineCount++;
 			}
 		}
-		
+		// Error message for invalid functions
+		if (stack.length > 0) {
+			vscode.window.showWarningMessage('Function exceeds 30 lines and is not closed.');
+		}
+
+		// If no warnings were displayed, display success message
+		if (!hasWarning) {
+			vscode.window.showInformationMessage('No functions exceed 30 lines in this file!');
+		}
 	}));
 
 	// Create a new status bar item that we can now manage
