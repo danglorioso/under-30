@@ -34,14 +34,15 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// When status bar item is clicked, scan the active editor window
 	// for functions that exceed 30 lines of code
 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
-		// const n = getNumberOfSelectedLines(vscode.window.activeTextEditor);
-		// vscode.window.showInformationMessage(`Yeah, ${n} line(s) selected... Keep going!`);
-
+		// Fetch the active editor window
 		const editor = vscode.window.activeTextEditor;
+
+		// If no editor is active, do nothing
 		if (!editor) {
-			return; // No open text editor
+			return; 
 		}
 	
+		// Initialize variables to store the text, lines, stack, and line count
 		const text = editor.document.getText();
 		const lines = text.split('\n');
 		let stack = [];
@@ -66,23 +67,31 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 					// Check if this is the start of a function
 					if (stack.length === 1) {
 						functionStartLine = LINE_I + 1;
-						lineCount = -1; // Subtract 1 to account for the line with the opening brace
+						// Subtract 1 to account for line with opening brace
+						lineCount = -1;
 					}
 				} else if (char === '}') {
 					// Pop the stack if the character is a closing brace
 					if (stack.length > 0) {
 						stack.pop();
 					} else {
-						// If there are no opening braces to match the closing brace, display error message
-						vscode.window.showWarningMessage(`Unclosed function exists or extra closing brace at line ${LINE_I + 1}.`);
+						// If no opening braces to match, display error message
+						vscode.window.showWarningMessage(`Unclosed function' +
+											 'exists or extra closing brace' + 
+													 'at line ${LINE_I + 1}.`);
 					}
 
 					// If the function has ended, check if it exceeds 30 lines
 					if (stack.length === 0) {
 						if (lineCount > 30) {
+							// Trip warning flag boolean
 							hasWarning = true;
-							vscode.window.showWarningMessage(`Function from line ${functionStartLine} to line ${LINE_I + 1} exceeds 30 lines.`);
+							// Display warning message
+							vscode.window.showWarningMessage(`Function from' + 
+										 'line ${functionStartLine} to line' + 
+									        '${LINE_I + 1} exceeds 30 lines.`);
 						}
+						// Reset line count
 						lineCount = 0;
 					}
 				}
