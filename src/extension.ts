@@ -118,6 +118,7 @@ function checkFunctionLength() {
 				}
 			}
 		}
+
 		// Increment line count if line is in function and not at end yet
 		if (stack.length > 0) {
 			lineCount++;
@@ -127,11 +128,11 @@ function checkFunctionLength() {
 	// Display error message if there are unclosed functions at end of file
 	if (stack.length > 0) {
 		vscode.window.showWarningMessage
-									('Unclosed function(s) exist in this file!');
+								  ('Unclosed function(s) exist in this file!');
 	} else if (!hasWarning) {
 		// If no warnings were displayed, display success message
 		vscode.window.showInformationMessage
-							('No functions exceed 30 lines in this file!');
+							    ('No functions exceed 30 lines in this file!');
 	}
 }	
 
@@ -149,7 +150,8 @@ function updateStatusBarItem(): void {
 	}
 }
 
-function getNumberOfSelectedLines(editor: vscode.TextEditor | undefined): number {
+function getNumberOfSelectedLines(editor: vscode.TextEditor | 
+														   undefined): number {
 	// Initalize the number of lines
 	let lines = 0;
 
