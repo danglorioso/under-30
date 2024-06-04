@@ -9,8 +9,9 @@
  *
  *     Summary: A Microsoft Visual Studio Code extension that provides a status
  * 			    bar item that displays the number of lines selected in the 
- *              active text editor. This extension also can detect functions
- * 	            that exceed 30 lines of code in length. 
+ *              active text editor. This extension also detects functions
+ * 	            that exceed 30 lines of code in length, as well as formatting
+ * 				errors in functions like unclosed or unmatched braces.
  * 
  *  Acknowledgements: This extension is based on the "statusbar-sample" example
  * 			    provided by Microsoft's Visual Studio Code documentation:
@@ -20,9 +21,9 @@
  **************************************************************/
 
 // The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+// Status bar item declaration
 let lineStatusBarItem: vscode.StatusBarItem;
 
 export function activate({ subscriptions }: vscode.ExtensionContext) {
@@ -30,6 +31,11 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 	// Register a command that is invoked when the status bar
 	// item is selected
 	const myCommandId = 'sample.showSelectionCount';
+
+	// Declare command to check function length
+	let disposable = vscode.commands.registerCommand('under30.checkfunctionlength', () => {
+		checkFunctionLength();
+	});
 
 	// When status bar item is clicked, scan the active editor window
 	// for functions that exceed 30 lines of code

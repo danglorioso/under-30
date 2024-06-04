@@ -1,8 +1,8 @@
 {
     "name": "under-30",
-    "displayName": "Under 30",
+    "displayName": "Under 30 - Function Length Checker and Line Counter",
     "description": "Displays number of selected lines in the status bar and alerts when a detected function exceeds 30 liens.",
-    "version": "0.0.1",
+    "version": "1.0.0",
   	"publisher": "Dan Glorioso",
     "repository": {
       "type": "git",
@@ -14,6 +14,14 @@
     "categories": [
       "Other"
     ],
+    "contributes": {
+      "commands": [
+        {
+          "command": "under30.checkfunctionlength",
+          "title": "Check Function Length of All Functions in This File"
+        }
+      ]
+    },
     "activationEvents": [
       "*"
     ],

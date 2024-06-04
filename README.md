@@ -1,6 +1,9 @@
 # under-30 README
 
-This is the README for your extension "under-30". After writing up a brief description, we recommend including the following sections.
+A Microsoft Visual Studio Code extension that provides a status bar item that 
+displays the number of lines selected in the active text editor. This extension
+also detects functionsthat exceed 30 lines of code in length, as well as 
+formatting errors in functions like unclosed or unmatched braces.
 
 ## Features
 
@@ -14,7 +17,7 @@ For example if there is an image subfolder under your extension project workspac
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Requires VSCode version 1.73.0 or greater.
 
 ## Extension Settings
 
@@ -33,19 +36,13 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+Initial release of under-30 VSCode Extension.
+
 
 ### 1.0.0
 
-Initial release of ...
+Initial release of under-30 VSCode Extension.
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
 
 ---
 
