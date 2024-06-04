@@ -21,23 +21,16 @@ Requires VSCode version 1.73.0 or greater.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+This extension currently does not add any VS Code Settings. 
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+No known issues at this time.
 
 ## Release Notes
 
 Initial release of under-30 VSCode Extension.
-
 
 ### 1.0.0
 
