@@ -36,8 +36,6 @@ This File" from the Command Palette to perform the scan.
   ![Run the command "Check Function Length of All Functions in This File" from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/command-palette.png)
 
   ![Run the command "Check Function Length of All Functions in This File" from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/command.gif)
-    
-
 
 - Success or warning notifications will be displayed in the lower right corner 
 and in the Notifications window. If functions exceed the 30-line limit, the 
