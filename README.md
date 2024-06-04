@@ -1,58 +1,42 @@
 # under-30 README
 
-A Microsoft Visual Studio Code extension that provides a status bar item that 
-displays the number of lines selected in the active text editor. This extension
-also detects functionsthat exceed 30 lines of code in length, as well as 
-formatting errors in functions like unclosed or unmatched braces.
+A Microsoft Visual Studio Code extension that enhances your coding workflow by 
+displaying the number of selected lines in the status bar and detecting 
+functions that exceed 30 lines of code. It also identifies formatting errors, 
+such as unclosed or unmatched braces, ensuring your code remains clean and 
+within stylistic guidelines.
 
 This extension was developed to comply with the Tufts University CS Department's
-stylistic policy of writing functions of a length of 30 lines of fewer. 
+stylistic policy of writing functions no longer than 30 lines.
 
 ## Features
 
-The under-30 extension provides a number of different features to improve 
+The **under-30** extension provides a number of different features to improve 
 efficiency when evaluating the functional formatting of your program.
 
-Most simply, select a range of lines to calculate the number of selected lines.
-The result is displayed in the status bar item that appears in the lower right
-corner.
+### Line Selection Display
+- Select a range of lines in the editor to see the number of selected lines displayed in the status bar item at the lower right corner.
+  
+  ![Select text across lines in the editor to display the number of selected lines in the status bar.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/line-selection.gif)
 
-![Select text across lines in the editor to display the number of selected lines in the status bar.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/line-selection.gif)
+### Function Length Check
+- The extension can scan all functions in the current active editor and raise warnings if any function exceeds 30 lines.
+- Click the status bar item in the lower right corner to initiate the scan after selecting a range of lines.
 
-This can be useful when a large range of code lines need to be tallied. 
+  ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
 
-The most time-saving aspect of this extension is that it can scan every function
-in your current active editor and raise warnings for functions that exceed
-30 lines in length. 
+- Alternatively, run the command "Check Function Length of All Functions in This File" from the Command Palette to perform the scan.
 
-If there are no functions present that exceed 30 lines in length, a success
-informaiton message will be displayed in the lower right and in the Notifications
-window. If there exist one or more functions that exceed the 30 lines limit, a 
-warning notification will appear, which will include the beginning and end line
-numbers of every function in the current editor that violates the function line
-limit.
+  ![Run the command "Check Function Length of All Functions in This File" from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/line-selection.gif)
 
-![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
+- Success or warning notifications will be displayed in the lower right corner and in the Notifications window. If functions exceed the 30-line limit, the warning includes the start and end line numbers of each offending function.
 
-Another way to initiate the function-line-length scan is by running the command
-"Check Function Length of All Functions in This File" from the Command Palette
-at the center top. Identical warning or success notification will appear in the
-lower right corner and in the Notifications window.
+### Error Checking for Unclosed Functions
+- The extension checks for uneven braces, alerting the user to any unclosed or extra braces, which would prevent the function length check from completing.
 
-![Run the command "Check Function Length of All Functions in This File" from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/line-selection.gif)
-
-Additional features of this extension include error checking for unclosed functions.
-This includes uneven opening braces without corresponding closing braces or 
-extra closing braces. The function-line-length scan will not be able to perform
-with these errors present.
-
-Error messages, similar to the ones below, will be displayed in these circumstances
-to alert the programmer of the issue.
-
-![Error for missing opening brace.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/missing-closing-brace.png)
-
-![Error for missing opening brace.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/missing-opening-brace.png)
-
+  ![Error for missing opening brace.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/missing-closing-brace.png)
+  
+  ![Error for missing opening brace.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/missing-opening-brace.png)
 
 
 ## Requirements
