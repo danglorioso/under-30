@@ -26,10 +26,9 @@ warnings if any function exceeds 30 lines.
 - Click the status bar item in the lower right corner to initiate the scan 
 after selecting a range of lines.
 
-  ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
-
   ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/exceeds-30.png)
 
+  ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
 
 - Alternatively, run the command "Check Function Length of All Functions in 
 This File" from the Command Palette to perform the scan.
