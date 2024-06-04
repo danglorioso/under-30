@@ -11,7 +11,7 @@ Describe specific features of your extension including screenshots of your exten
 
 For example if there is an image subfolder under your extension project workspace:
 
-\!\[Select text across lines in the editor to display the number of selected lines in the status bar.\]\(images/line-selection.gif\)
+\!\[Select text across lines in the editor to display the number of selected lines in the status bar.\]\(https://github.com/danglorioso/under-30/blob/main/images/line-selection.gif?raw=true)
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
