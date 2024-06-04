@@ -15,24 +15,34 @@ The **under-30** extension provides a number of different features to improve
 efficiency when evaluating the functional formatting of your program.
 
 ### Line Selection Display
-- Select a range of lines in the editor to see the number of selected lines displayed in the status bar item at the lower right corner.
+- Select a range of lines in the editor to see the number of selected lines 
+displayed in the status bar item at the lower right corner.
   
   ![Select text across lines in the editor to display the number of selected lines in the status bar.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/line-selection.gif)
 
 ### Function Length Check
-- The extension can scan all functions in the current active editor and raise warnings if any function exceeds 30 lines.
-- Click the status bar item in the lower right corner to initiate the scan after selecting a range of lines.
+- The extension can scan all functions in the current active editor and raise 
+warnings if any function exceeds 30 lines.
+- Click the status bar item in the lower right corner to initiate the scan 
+after selecting a range of lines.
 
   ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
 
-- Alternatively, run the command "Check Function Length of All Functions in This File" from the Command Palette to perform the scan.
+  ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/exceeds-30.png)
 
-  ![Run the command "Check Function Length of All Functions in This File" from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/line-selection.gif)
 
-- Success or warning notifications will be displayed in the lower right corner and in the Notifications window. If functions exceed the 30-line limit, the warning includes the start and end line numbers of each offending function.
+- Alternatively, run the command "Check Function Length of All Functions in 
+This File" from the Command Palette to perform the scan.
+
+  ![Run the command "Check Function Length of All Functions in This File" from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/command.gif)
+
+- Success or warning notifications will be displayed in the lower right corner 
+and in the Notifications window. If functions exceed the 30-line limit, the 
+warning includes the start and end line numbers of each offending function.
 
 ### Error Checking for Unclosed Functions
-- The extension checks for uneven braces, alerting the user to any unclosed or extra braces, which would prevent the function length check from completing.
+- The extension checks for uneven braces, alerting the user to any unclosed or 
+extra braces, which would prevent the function length check from completing.
 
   ![Error for missing opening brace.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/missing-closing-brace.png)
   
@@ -59,26 +69,6 @@ Initial release of under-30 VSCode Extension.
 
 Initial release of under-30 VSCode Extension.
 
-
 ---
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
