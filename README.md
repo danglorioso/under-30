@@ -11,7 +11,7 @@ Describe specific features of your extension including screenshots of your exten
 
 For example if there is an image subfolder under your extension project workspace:
 
-\!\[feature X\]\(images/feature-x.png\)
+\!\[Select text across lines in the editor to display the number of selected lines in the status bar.\]\(images/line-selection.gif\)
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
@@ -22,7 +22,6 @@ Requires VSCode version 1.73.0 or greater.
 ## Extension Settings
 
 This extension currently does not add any VS Code Settings. 
-
 
 ## Known Issues
 
