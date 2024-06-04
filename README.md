@@ -41,7 +41,8 @@ This File" from the Command Palette to perform the scan.
 
 - Success or warning notifications will be displayed in the lower right corner 
 and in the Notifications window. If functions exceed the 30-line limit, the 
-warning includes the start and end line numbers of each offending function.
+warning includes the start and end line numbers of each offending function to
+pinpoint the issue(s).
 
 ### Error Checking for Unclosed Functions
 - The extension checks for uneven braces, alerting the user to any unclosed or 
