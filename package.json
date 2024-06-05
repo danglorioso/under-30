@@ -3,7 +3,7 @@
     "displayName": "Under 30 - Function Length Checker and Line Counter",
     "description": "Displays number of selected lines in the status bar and alerts when a detected function exceeds 30 liens.",
     "version": "1.0.0",
-  	"publisher": "Dan Glorioso",
+  	"publisher": "DanGlorioso",
     "icon": "icon.png",
     "repository": {
       "type": "git",
