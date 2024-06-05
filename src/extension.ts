@@ -141,7 +141,7 @@ function checkFunctionLength() {
 		vscode.window.showInformationMessage
 							    ('No functions exceed 30 lines in this file!');
 	}
-}	
+}
 
 function updateStatusBarItem(): void {
 
