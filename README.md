@@ -28,6 +28,8 @@ after selecting a range of lines.
 
   ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/exceeds-30.png)
 
+- If no functions exceed 30 lines, a success message will be displayed.
+
   ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
 
 - Alternatively, run the command "Check Function Length of All Functions in 
