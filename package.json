@@ -2,7 +2,7 @@
     "name": "under-30",
     "displayName": "Under 30 - Function Length Checker and Line Counter",
     "description": "Displays number of selected lines in the status bar and alerts when a detected function exceeds 30 lines.",
-    "version": "1.0.0",
+    "version": "1.0.1",
   	"publisher": "DanGlorioso",
     "icon": "icon.png",
     "repository": {
