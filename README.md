@@ -14,14 +14,14 @@ stylistic policy of writing functions no longer than 30 lines.
 The **under-30** extension provides a number of different features to improve 
 efficiency when evaluating the functional formatting of your program.
 
-- Real-Time Updates: The number of selected lines is dynamically displayed in 
+- **Real-Time Updates**: The number of selected lines is dynamically displayed in 
 the status bar whenever text is selected, regardless of the coding language or 
 document type.
-- Accurate Function Detection: Functions are identified by their opening curly 
+- **Accurate Function Detection**: Functions are identified by their opening curly 
 brace ("{") at the start and their closing curly brace ("}") at the end. Nested
 curly braces within the function do not interfere with this automatic detection
 process.
-- Lightweight and Efficient: Designed to have minimal impact on the performance
+- **Lightweight and Efficient**: Designed to have minimal impact on the performance
 of VS Code, ensuring a smooth and responsive coding experience.
 
 ### Line Selection Display
