@@ -5,8 +5,8 @@
  *            Project: Under 30 VSCode Extension
  *             Author: Dan Glorioso
  *            Created: 05/13/2024
- *           Modified: 06/04/2024
- * 	          Version: 1.0.0
+ *           Modified: 06/24/2024
+ * 	          Version: 1.0.4
  *
  *     Summary: A Microsoft Visual Studio Code extension that provides a status
  * 			    bar item that displays the number of lines selected in the 
