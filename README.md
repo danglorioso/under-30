@@ -1,10 +1,10 @@
 # under-30 README
 
-A Microsoft Visual Studio Code extension that enhances your coding workflow by 
-displaying the number of selected lines in the status bar and detecting 
-functions that exceed 30 lines of code. It also identifies formatting errors, 
-such as unclosed or unmatched braces, ensuring your code remains clean and 
-within stylistic guidelines.
+**Under 30** is a Microsoft Visual Studio Code extension that enhances your 
+coding workflow by displaying the number of selected lines in the status bar 
+and detecting functions that exceed 30 lines of code. It also identifies 
+formatting errors, such as unclosed or unmatched braces, ensuring your code 
+remains clean and within stylistic guidelines.
 
 This extension was developed to comply with the Tufts University CS Department's
 stylistic policy of writing functions no longer than 30 lines.
