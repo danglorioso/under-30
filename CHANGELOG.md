@@ -2,8 +2,10 @@
 
 All notable changes to the "under30" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+### 1.0.3
 
-## [Unreleased]
+Updated documentation and corrections for under-30 VSCode Extension.
 
-- Initial release
+### 1.0.0
+
+Initial release of under-30 VSCode Extension.
