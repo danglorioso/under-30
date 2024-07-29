@@ -1,4 +1,4 @@
-# under-30 README
+# Under 30 README
 
 **Under 30** is a Microsoft Visual Studio Code extension that enhances your 
 coding workflow by displaying the number of selected lines in the status bar 
@@ -12,7 +12,7 @@ stylistic policy of writing functions no longer than 30 lines.
 
 ## Features
 
-The **under-30** extension provides a number of different features to improve 
+**Under-30** provides a number of different features to improve 
 efficiency when evaluating the functional formatting of your program.
 
 - **Real-Time Updates**: The number of selected lines is dynamically displayed in 
@@ -77,7 +77,25 @@ Requires VS Code version 1.73.0 or greater.
 
 ## Extension Settings
 
-This extension currently does not add any VS Code Settings. 
+Here is the updated "Extension Settings" section of the README:
+
+## Extension Settings
+
+**Under 30** extension provides the following settings to allow customization:
+
+- **Function Length Limit**: Users can set the maximum number of lines allowed for functions. The default limit is 30 lines. This can be customized by using the command `Set Function Length Limit` or through the VSCode settings.
+
+To set the function length limit via the command palette:
+
+1. Open the command palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
+2. Search for and select `Set Function Length Limit`.
+3. Enter a positive integer for the desired function line limit.
+
+Alternatively, you can set the function length limit through the settings:
+
+1. Go to `File > Preferences > Settings` (or `Code > Preferences > Settings`).
+2. Search for `under30.functionLengthLimit`.
+3. Enter the desired line limit for functions.
 
 ## Known Issues
 
