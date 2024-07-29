@@ -38,6 +38,11 @@ export function activate({ subscriptions }: vscode.ExtensionContext) {
 		checkFunctionLength();
 	});
 
+	// Declare command to set function length limit
+	subscriptions.push(vscode.commands.registerCommand('under30.setFunctionLengthLimit', () => {
+		setFunctionLengthLimit();
+	}));
+
 	// When status bar item is clicked, scan the active editor window
 	// for functions that exceed 30 lines of code
 	subscriptions.push(vscode.commands.registerCommand(myCommandId, () => {
@@ -78,6 +83,10 @@ function checkFunctionLength() {
 	let functionStartLine = 0;
 	let hasWarning = false;
 	
+	// Fetch function length limit from settings
+	const config = vscode.workspace.getConfiguration('under30');
+	const functionLengthLimit = config.get<number>('functionLengthLimit') || 30;
+
 	// Traverse the lines in the active editor window
 	for (let LINE_I = 0; LINE_I < lines.length; LINE_I++) {
 		// Fetch the current line
@@ -110,15 +119,15 @@ function checkFunctionLength() {
 													at line ${LINE_I + 1}.`);
 				}
 
-				// If the function has ended, check if it exceeds 30 lines
+				// If the function has ended, check if it exceeds the limit number of lines
 				if (stack.length === 0) {
-					if (lineCount > 30) {
+					if (lineCount > functionLengthLimit) {
 						// Trip warning flag boolean
 						hasWarning = true;
 						// Display warning message
 						vscode.window.showWarningMessage(`Function from 
 											line ${functionStartLine} to line 
-											${LINE_I + 1} exceeds 30 lines.`);
+											${LINE_I + 1} exceeds ${functionLengthLimit} lines.`);
 					}
 					// Reset line count
 					lineCount = 0;
@@ -139,8 +148,29 @@ function checkFunctionLength() {
 	} else if (!hasWarning) {
 		// If no warnings were displayed, display success message
 		vscode.window.showInformationMessage
-							    ('No functions exceed 30 lines in this file!');
+							    ('No functions exceed ' + functionLengthLimit +  ' lines in this file!');
 	}
+}
+
+function setFunctionLengthLimit() {
+	vscode.window.showInputBox({
+		prompt: "Set the maximum number of lines a function can have",
+		value: "30",
+		validateInput: (value: string) => {
+			const number = parseInt(value);
+			if (isNaN(number) || number <= 0) {
+				return "Please enter a positive number";
+			}
+			return null;
+		}
+	}).then(value => {
+		if (value) {
+			const number = parseInt(value);
+			const config = vscode.workspace.getConfiguration('under30');
+			config.update('functionLengthLimit', number, true);
+			vscode.window.showInformationMessage(`Function length limit set to ${number} lines.`);
+		}
+	});
 }
 
 function updateStatusBarItem(): void {

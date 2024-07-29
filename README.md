@@ -2,9 +2,10 @@
 
 **Under 30** is a Microsoft Visual Studio Code extension that enhances your 
 coding workflow by displaying the number of selected lines in the status bar 
-and detecting functions that exceed 30 lines of code. It also identifies 
-formatting errors, such as unclosed or unmatched braces, ensuring your code 
-remains clean and within stylistic guidelines.
+and detecting functions that exceed a specified number of lines. By default, 
+this limit is set to 30 lines, but it can be modified using the extension's 
+commands. It also identifies formatting errors, such as unclosed or unmatched 
+braces, ensuring your code remains clean and within stylistic guidelines.
 
 This extension was developed to comply with the Tufts University CS Department's
 stylistic policy of writing functions no longer than 30 lines.
@@ -32,15 +33,15 @@ displayed in the status bar item at the lower right corner.
 
 ### Function Length Check
 - The extension can scan all functions in the current active editor and raise 
-warnings if any function exceeds 30 lines.
+warnings if any function exceeds the specified line limit (default is 30 lines).
 - Click the status bar item in the lower right corner to initiate the scan 
 after selecting a range of lines.
 
-  ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/exceeds-30.png)
+  ![Click the status bar to check that the length of every function in the file does not exceed the specified limit.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/exceeds-30.png)
 
-- If no functions exceed 30 lines, a success message will be displayed.
+- If no functions exceed the specified line limit, a success message will be displayed.
 
-  ![Click the status bar to check that the length of every function in the file does not exceed 30 lines.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
+  ![Click the status bar to check that the length of every function in the file does not exceed the specified limit.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/status-bar-click.gif)
 
 - Alternatively, run the command "Check Function Length of All Functions in 
 This File" from the Command Palette to perform the scan.
@@ -50,9 +51,16 @@ This File" from the Command Palette to perform the scan.
   ![Run the command "Check Function Length of All Functions in This File" from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/command.gif)
 
 - Success or warning notifications will be displayed in the lower right corner 
-and in the Notifications window. If functions exceed the 30-line limit, the 
+and in the Notifications window. If functions exceed the specified line limit, the 
 warning includes the start and end line numbers of each offending function to
 pinpoint the issue(s).
+
+### Set Function Length Limit
+- You can dynamically set the function length limit by running the command 
+"Set Function Length Limit" from the Command Palette. This allows you to adjust
+the limit to any positive integer value.
+
+  ![Set the function length limit dynamically from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/set-limit.png)
 
 ### Error Checking for Unclosed Functions
 - The extension checks for uneven braces, alerting the user to any unclosed or 
@@ -61,7 +69,6 @@ extra braces, which would prevent the function length check from completing.
   ![Error for missing opening brace.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/missing-closing-brace.png)
   
   ![Error for missing opening brace.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/missing-opening-brace.png)
-
 
 ## Requirements
 
@@ -77,14 +84,22 @@ No known issues at this time.
 
 ## Release Notes
 
-### 1.0.3
+### [1.1.0] - 2024-07-29
+
+#### Added
+- New command `under30.setFunctionLengthLimit` to allow users to dynamically change the function length limit.
+- Updated extension to check function lengths based on the user-defined limit.
+
+### [1.0.3] - 2024-06-05
 
 Updated documentation and corrections for under-30 VSCode Extension.
 
-### 1.0.0
+### [1.0.2] - 2024-06-06
+
+Updated documentation and corrections for under-30 VSCode Extension.
+
+### [1.0.0] - 2024-06-05
 
 Initial release of under-30 VSCode Extension.
-
----
 
 **Enjoy!**

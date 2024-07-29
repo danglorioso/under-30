@@ -1,9 +1,9 @@
 {
     "name": "under-30",
     "displayName": "Under 30 - Function Length Checker & Line Counter",
-    "description": "Displays number of selected lines in the status bar and alerts when a detected function exceeds 30 lines.",
-    "version": "1.0.3",
-  	"publisher": "DanGlorioso",
+    "description": "Displays number of selected lines in the status bar and alerts when a detected function exceeds a specified number of lines.",
+    "version": "1.1.0",
+    "publisher": "DanGlorioso",
     "icon": "icon.png",
     "repository": {
         "type": "git",
@@ -20,8 +20,22 @@
             {
                 "command": "under30.checkfunctionlength",
                 "title": "Check Function Length of All Functions in This File"
+            },
+            {
+                "command": "under30.setFunctionLengthLimit",
+                "title": "Set Function Length Limit..."
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "properties": {
+                "under30.functionLengthLimit": {
+                    "type": "number",
+                    "default": 30,
+                    "description": "The maximum number of lines a function can have before a warning is issued."
+                }
+            }
+        }
     },
     "activationEvents": [
         "onLanguage"
