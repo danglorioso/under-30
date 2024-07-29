@@ -83,7 +83,7 @@ Here is the updated "Extension Settings" section of the README:
 
 **Under 30** extension provides the following settings to allow customization:
 
-- **Function Length Limit**: Users can set the maximum number of lines allowed for functions. The default limit is 30 lines. This can be customized by using the command `Set Function Length Limit` or through the VSCode settings.
+- **Function Length Limit**: Users can set the maximum number of lines allowed for functions. The default limit is 30 lines. This can be customized by using the command `Set Function Length Limit` or through the VS Code settings.
 
 To set the function length limit via the command palette:
 
@@ -111,14 +111,14 @@ No known issues at this time.
 
 ### [1.0.3] - 2024-06-05
 
-Updated documentation and corrections for under-30 VSCode Extension.
+Updated documentation and corrections for under-30 VS Code Extension.
 
 ### [1.0.2] - 2024-06-06
 
-Updated documentation and corrections for under-30 VSCode Extension.
+Updated documentation and corrections for under-30 VS Code Extension.
 
 ### [1.0.0] - 2024-06-05
 
-Initial release of under-30 VSCode Extension.
+Initial release of under-30 VS Code Extension.
 
 **Enjoy!**
