@@ -3,11 +3,11 @@
 **Under 30** is a Microsoft Visual Studio Code extension that enhances your 
 coding workflow by displaying the number of selected lines in the status bar 
 and detecting functions that exceed a specified number of lines. By default, 
-this limit is set to 30 lines, but it can be modified using the extension's 
+this limit is set to 30 lines but may be modified using the extension's 
 commands. It also identifies formatting errors, such as unclosed or unmatched 
 braces, ensuring your code remains clean and within stylistic guidelines.
 
-This extension was developed to comply with the Tufts University CS Department's
+This extension was originially developed to comply with the Tufts University CS Department's
 stylistic policy of writing functions no longer than 30 lines.
 
 ## Features
@@ -22,6 +22,8 @@ document type.
 brace ("{") at the start and their closing curly brace ("}") at the end. Nested
 curly braces within the function do not interfere with this automatic detection
 process.
+- **Customizable Function Length Limit**: Users can set their own function length 
+limit through a command, allowing flexibility to adhere to different coding standards.
 - **Lightweight and Efficient**: Designed to have minimal impact on the performance
 of VS Code, ensuring a smooth and responsive coding experience.
 
@@ -56,11 +58,10 @@ warning includes the start and end line numbers of each offending function to
 pinpoint the issue(s).
 
 ### Set Function Length Limit
-- You can dynamically set the function length limit by running the command 
-"Set Function Length Limit" from the Command Palette. This allows you to adjust
-the limit to any positive integer value.
+- Dynamically set the function length limit by running the command 
+"Set Function Length Limit" from the Command Palette. Any positive integer may be inputted.
 
-  ![Set the function length limit dynamically from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/set-limit.png)
+  ![Set the function length limit dynamically from the Command Palette.](https://raw.githubusercontent.com/danglorioso/under-30/main/images/set-limit.gif)
 
 ### Error Checking for Unclosed Functions
 - The extension checks for uneven braces, alerting the user to any unclosed or 
@@ -72,7 +73,7 @@ extra braces, which would prevent the function length check from completing.
 
 ## Requirements
 
-Requires VSCode version 1.73.0 or greater.
+Requires VS Code version 1.73.0 or greater.
 
 ## Extension Settings
 
