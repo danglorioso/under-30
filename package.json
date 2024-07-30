@@ -23,7 +23,11 @@
         "line-count",
         "function-checker",
         "code-line-count",
-        "coding-standards"
+        "coding-standards",
+        "style-guide",
+        "code-quality",
+        "function-stats",
+        "Tufts"
     ],
     "contributes": {
         "commands": [
