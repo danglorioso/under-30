@@ -15,6 +15,16 @@
     "categories": [
         "Other"
     ],
+    "keywords": [
+        "function-length",
+        "function-length-checker",
+        "function-length-limiter",
+        "line-counter",
+        "line-count",
+        "function-checker",
+        "code-line-count",
+        "coding-standards"
+    ],
     "contributes": {
         "commands": [
             {
