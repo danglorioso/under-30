@@ -1,6 +1,10 @@
 # Change Log
 
-All notable changes to the "under30" extension will be documented in this file.
+All notable changes to the "under30" extension:
+
+### [1.1.1] - 2025-01-13
+
+Updated documentation for clarity.
 
 ### [1.1.0] - 2024-07-29
 
